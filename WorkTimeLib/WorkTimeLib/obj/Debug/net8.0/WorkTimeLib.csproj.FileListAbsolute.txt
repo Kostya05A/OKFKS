@@ -1,0 +1,11 @@
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\bin\Debug\net8.0\WorkTimeLib.deps.json
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\bin\Debug\net8.0\WorkTimeLib.dll
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\bin\Debug\net8.0\WorkTimeLib.pdb
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\WorkTimeLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\WorkTimeLib.AssemblyInfoInputs.cache
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\WorkTimeLib.AssemblyInfo.cs
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\WorkTimeLib.csproj.CoreCompileInputs.cache
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\WorkTimeLib.dll
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\refint\WorkTimeLib.dll
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\WorkTimeLib.pdb
+C:\Users\user.COM304-16\source\repos\WorkTimeLib\WorkTimeLib\obj\Debug\net8.0\ref\WorkTimeLib.dll
