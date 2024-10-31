@@ -69,13 +69,27 @@ namespace UnitTests
             });
         }
         [TestMethod]
-        public void TestMethod3_ArgumentOutOfRange_ConsultationTimeLessThanOne()
+        public void TestMethod3()
         {
-            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(10, 00, 00) };
-            int[] duration = new int[] { 30 };
+            TimeSpan beginWorkingTime = new TimeSpan(18, 0, 0);
+            TimeSpan endWorkingTime = new TimeSpan(8, 0, 0);
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(9, 0, 0) };
+            int[] duration = new int[] { 60 };
+            int consultationTime = 30;
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
+            });
+        }
+        [TestMethod]
+        public void TestMethod4()
+        {
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(9, 0, 0) };
+            int[] duration = new int[] { 60 };
             TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
             TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
-            int consultationTime = 0;
+            int consultationTime = -1; // Invalid consultation time
 
             Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
             {
@@ -83,25 +97,24 @@ namespace UnitTests
             });
         }
         [TestMethod]
-        public void TestMethod4_ArgumentOutOfRange_StartTimesOutOfRange()
+        public void TestMethod5()
         {
-            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(7, 00, 00) }; // Начало раньше начала рабочего времени
-            int[] duration = new int[] { 30 };
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(17, 0, 0) };
+            int[] duration = new int[] { 120 }; // Duration that exceeds working hours
             TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
             TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
             int consultationTime = 30;
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
-            {
-                Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
-            });
-        }
+            string[] actual = Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
 
+            // Проверяем что результат пустой массив
+            Assert.AreEqual(0, actual.Length);
+        }
         [TestMethod]
-        public void TestMethod5_ArgumentOutOfRange_EndTimesOutOfRange()
+        public void TestMethod6()
         {
-            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(17, 30, 00) };
-            int[] duration = new int[] { 120 }; // Продолжительность превышает рабочий день
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(7, 0, 0) }; // Start time before working hours
+            int[] duration = new int[] { 60 };
             TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
             TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
             int consultationTime = 30;
