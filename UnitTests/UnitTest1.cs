@@ -68,6 +68,48 @@ namespace UnitTests
                 Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
             });
         }
-    }
+        [TestMethod]
+        public void TestMethod3_ArgumentOutOfRange_ConsultationTimeLessThanOne()
+        {
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(10, 00, 00) };
+            int[] duration = new int[] { 30 };
+            TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
+            TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
+            int consultationTime = 0;
 
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
+            });
+        }
+        [TestMethod]
+        public void TestMethod4_ArgumentOutOfRange_StartTimesOutOfRange()
+        {
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(7, 00, 00) }; // Начало раньше начала рабочего времени
+            int[] duration = new int[] { 30 };
+            TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
+            TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
+            int consultationTime = 30;
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
+            });
+        }
+
+        [TestMethod]
+        public void TestMethod5_ArgumentOutOfRange_EndTimesOutOfRange()
+        {
+            TimeSpan[] startTime = new TimeSpan[] { new TimeSpan(17, 30, 00) };
+            int[] duration = new int[] { 120 }; // Продолжительность превышает рабочий день
+            TimeSpan beginWorkingTime = new TimeSpan(8, 0, 0);
+            TimeSpan endWorkingTime = new TimeSpan(18, 0, 0);
+            int consultationTime = 30;
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                Calculation.AvailablePeriods(startTime, duration, beginWorkingTime, endWorkingTime, consultationTime);
+            });
+        }
+    }
 }
